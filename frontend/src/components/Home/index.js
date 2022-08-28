@@ -30,7 +30,7 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      term: ""
+      term: "",
     };
   }
 
@@ -45,11 +45,11 @@ class Home extends React.Component {
     );
   }
 
-  componentDidUpdate(pp,ps,ss) {
-    if(ps.term !== this.state.term) {
-      if(this.state.term.length>=3) {
+  componentDidUpdate(pp, ps, ss) {
+    if (ps.term !== this.state.term) {
+      if (this.state.term.length >= 3) {
         const tab = "byTitle";
-    const itemsPromise = agent.Items.byTitle;
+        const itemsPromise = agent.Items.byTitle;
         this.props.onLoad(
           tab,
           itemsPromise,
@@ -57,14 +57,13 @@ class Home extends React.Component {
         );
       } else {
         const tab = "all";
-    const itemsPromise = agent.Items.all;
+        const itemsPromise = agent.Items.all;
         this.props.onLoad(
           tab,
           itemsPromise,
           Promise.all([agent.Tags.getAll(), itemsPromise(this.state.term)])
         );
       }
-      
     }
   }
 
@@ -75,7 +74,10 @@ class Home extends React.Component {
   render() {
     return (
       <div className="home-page">
-        <Banner term={this.state.term} setTerm={val => this.setState({term:val})}/>
+        <Banner
+          term={this.state.term}
+          setTerm={(val) => this.setState({ term: val })}
+        />
 
         <div className="container page">
           <Tags tags={this.props.tags} onClickTag={this.props.onClickTag} />
