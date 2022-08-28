@@ -70,6 +70,13 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const MainView = (props) => {
+  if (props.term.length >= 3 && !props.items.length) {
+    return (
+      <div id="empty">
+        No items found for "<strong>{props.term}</strong>"
+      </div>
+    );
+  }
   return (
     <div>
       <div className="feed-toggle">
