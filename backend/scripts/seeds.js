@@ -16,27 +16,36 @@ const connectedToDatabase = () => {
 
 async function main() {
   connectedToDatabase();
+  let users = [];
+  let items = [];
+  let comments = [];
+
   for (let i = 0; i < 100; i++) {
     const user = new User();
     user.username = `user${i}`;
     user.email = `user${i}@gmail.com`;
-    await user.save();
-
+    users.push(user);
+  }
+  users = await User.insertMany(users);
+  for (let i = 0; i < 100; i++) {
     const item = new Item({
       slug: `slug${i}`,
       title: `title ${i}`,
       description: `description ${i}`,
-      seller: user,
+      seller: users[i],
     });
-    await item.save();
-
+    items.push(item);
+  }
+  items = await Item.insertMany(items);
+  for (let i = 0; i < 100; i++) {
     const comment = new Comment({
       body: `body ${i}`,
-      seller: user,
-      item: item,
+      seller: users[i],
+      item: items[i],
     });
-    await comment.save();
+    comments.push(comment);
   }
+  comments = await Comment.insertMany(comments);
 }
 
 main()
