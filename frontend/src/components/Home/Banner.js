@@ -9,8 +9,10 @@ const Banner = (props) => {
         <div>
           <span id="get-part">A place to get</span>
           <input
-            valur={props.term}
+            id="search-box"
+            value={props.term}
             onChange={(e) => props.setTerm(e.target.value)}
+            placeholder="What is it that you truly desire?"
           />
           <span> the cool stuff.</span>
         </div>
