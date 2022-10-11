@@ -12,7 +12,7 @@ const CommentInput = (props) => {
 
   const createComment = (ev) => {
     ev.preventDefault();
-    const payload = agent.Comments.create(this.props.slug, { body });
+    const payload = agent.Comments.create(props.slug, { body });
     setBody("");
     props.onSubmit(payload);
   };
